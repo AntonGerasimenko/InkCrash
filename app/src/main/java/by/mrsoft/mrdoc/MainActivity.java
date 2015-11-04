@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     PDFReader reader;
     Button good;
     Button crash;
+    Button clear;
 
     Document document;
 
@@ -41,9 +42,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         reader = (PDFReader) findViewById(R.id.view);
         good = (Button) findViewById(R.id.good);
         crash = (Button) findViewById(R.id.crash);
+        clear = (Button) findViewById(R.id.clear);
 
         good.setOnClickListener(this);
         crash.setOnClickListener(this);
+        clear.setOnClickListener(this);
+
 
         File file  = getFile(pdfName);
 
@@ -108,15 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
-
     }
-
 
     private File getFile(String fileName) {
         File downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
         return  new File(downloadDir, fileName);
     }
-
 
     private void copyAssets(String filename) {
         InputStream in = null;
@@ -184,6 +185,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private void clearAnnot(){
+        int allPages = document.GetPageCount();
+        for (int i =0;i<allPages;i++) {
+
+            Page page = document.GetPage(0);
+            page.ObjsStart();
+
+            while (page.GetAnnotCount()!=0) {
+
+                Page.Annotation annotation = page.GetAnnot(0);
+                annotation.RemoveFromPage();
+            }
+            page.Close();
+        }
+        document.Save();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -192,6 +210,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.good:
                 paint(GOOD);
+                break;
+            case R.id.clear:
+                clearAnnot();
                 break;
         }
     }

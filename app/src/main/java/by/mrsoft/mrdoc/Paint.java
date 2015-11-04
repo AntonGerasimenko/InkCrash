@@ -17,6 +17,7 @@ public final class Paint {
             InkConverter.addInkAnnotToPage(data, page, document.GetPageHeight(PAGE_NUM));
 
             page.Close();
+            document.Save();
         }
     }
 

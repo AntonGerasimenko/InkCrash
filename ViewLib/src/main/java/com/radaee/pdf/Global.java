@@ -34,8 +34,11 @@ public class Global
         //4th para is mail
         //5th para is key string
         //the package name got by native C/C++ library, not by pass parameter.
-        Init( act, 2, "radaee", "radaee_com@yahoo.cn",
-                "LNJFDN-C89QFX-9ZOU9E-OQ31K2-FADG6Z-XEBCAO" );
+        /*Init( act, 2, "radaee", "radaee_com@yahoo.cn",
+                "LNJFDN-C89QFX-9ZOU9E-OQ31K2-FADG6Z-XEBCAO" );*/
+		Init( act, 1, "Masshtabnie resheniya", "kochergov@mrsoft.by",
+				"XYJD4G-6LAAIT-ME6GQ4-VO5W2Z-MR8YVS-VV6C4Q" );
+
     }
 	/**
 	 * get version string from library.

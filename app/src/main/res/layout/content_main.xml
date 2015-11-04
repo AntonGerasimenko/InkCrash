@@ -41,5 +41,15 @@
         android:layout_marginLeft="76dp"
         android:layout_marginStart="76dp" />
 
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clear"
+        android:id="@+id/clear"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/good"
+        android:layout_toEndOf="@+id/good" />
+
 
 </RelativeLayout>

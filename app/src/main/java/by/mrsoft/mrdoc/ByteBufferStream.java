@@ -13,7 +13,7 @@ public class ByteBufferStream {
     public static final int LITTLE_ENDIAN = 1;
     public static final int BIG_ENDIAN = 2;
 
-    //Конструкторы
+
     private void create(byte data[], int order) {
         this.data = data;
         switch (order) {
@@ -43,7 +43,7 @@ public class ByteBufferStream {
         realSize = buffer.length;
     }
 
-    //Запись/чтение данных в/из потока
+
     public int writeByte(byte src) {
         data[curPosition] = src;
         curPosition++;
@@ -100,10 +100,10 @@ public class ByteBufferStream {
         return result;
     }
 
-    //Принимает цвет в том формате, в котором его использует Radaee (int ARGB)
+
     public int writeColor(int color) {
-        //В данных - RGBA
-        //Либа просит - ARGB
+        //Р’ РґР°РЅРЅС‹С… - RGBA
+        //Р›РёР±Р° РїСЂРѕСЃРёС‚ - ARGB
         data[curPosition+0] = (byte)((color >> 16) & 0xff);
         data[curPosition+1] = (byte)((color >> 8 ) & 0xff);
         data[curPosition+2] = (byte)((color      ) & 0xff);
@@ -194,9 +194,9 @@ public class ByteBufferStream {
         return Double.longBitsToDouble(result);
     }
 
-    //Возврат массивов байт
-    //Возвращает массив или его копию
-    //(в случае, если массив не был заполнен полностью)
+    //Р’РѕР·РІСЂР°С‚ РјР°СЃСЃРёРІРѕРІ Р±Р°Р№С‚
+    //Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ РёР»Рё РµРіРѕ РєРѕРїРёСЋ
+    //(РІ СЃР»СѓС‡Р°Рµ, РµСЃР»Рё РјР°СЃСЃРёРІ РЅРµ Р±С‹Р» Р·Р°РїРѕР»РЅРµРЅ РїРѕР»РЅРѕСЃС‚СЊСЋ)
     public byte[] getBytes() {
         byte result[];
         if (realSize == data.length) {
