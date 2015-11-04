@@ -16,4 +16,30 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="95dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crash"
+        android:id="@+id/crash"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Good"
+        android:id="@+id/good"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/crash"
+        android:layout_toEndOf="@+id/crash"
+        android:layout_marginLeft="76dp"
+        android:layout_marginStart="76dp" />
+
+
 </RelativeLayout>

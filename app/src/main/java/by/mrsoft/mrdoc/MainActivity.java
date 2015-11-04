@@ -1,10 +1,11 @@
 package by.mrsoft.mrdoc;
 
-
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.radaee.pdf.Document;
 import com.radaee.pdf.Global;
@@ -17,14 +18,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     PDFReader reader;
+    Button good;
+    Button crash;
+
+    Document document;
 
     final static String pdfName = "simple.pdf";
-
-
-
+    final static String GOOD = "good.array";
+    final static String BAD = "bad.array";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.content_main);
 
         reader = (PDFReader) findViewById(R.id.view);
+        good = (Button) findViewById(R.id.good);
+        crash = (Button) findViewById(R.id.crash);
+
+        good.setOnClickListener(this);
+        crash.setOnClickListener(this);
 
         File file  = getFile(pdfName);
 
@@ -45,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         String path  = file.getPath();
 
-        Document document = new Document();
+        document = new Document();
         document.Open(path,"");
         document.SetCache(Global.tmp_path + "/temp.dat");
         reader.PDFOpen(document, false, new PDFReader.PDFReaderListener() {
@@ -144,6 +153,46 @@ public class MainActivity extends AppCompatActivity {
         int read;
         while((read = in.read(buffer)) != -1){
             out.write(buffer, 0, read);
+        }
+    }
+
+    private byte[] getArray(String arrayName) throws IOException {
+        InputStream stream = null;
+        try {
+            stream = getAssets().open(arrayName);
+            byte [] out = new byte[stream.available()];
+
+            stream.read(out);
+
+            return out;
+        } finally {
+            if (stream!= null) try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void paint(String arrayName) {
+        try {
+            byte [] array = getArray(arrayName);
+            Paint.INK(document,array);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.crash:
+                paint(BAD);
+                break;
+            case R.id.good:
+                paint(GOOD);
+                break;
         }
     }
 }
