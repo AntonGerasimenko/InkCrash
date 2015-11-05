@@ -85,8 +85,8 @@ public class InkConverter {
         int nodesCount = path.GetNodeCount();
         float coordinates[] = new float[2];
 
-        //Подсчет количества "объектов" для результирующего сообщения
-        //для определения точного размера выходного массива
+        //РџРѕРґСЃС‡РµС‚ РєРѕР»РёС‡РµСЃС‚РІР° "РѕР±СЉРµРєС‚РѕРІ" РґР»СЏ СЂРµР·СѓР»СЊС‚РёСЂСѓСЋС‰РµРіРѕ СЃРѕРѕР±С‰РµРЅРёСЏ
+        //РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ С‚РѕС‡РЅРѕРіРѕ СЂР°Р·РјРµСЂР° РІС‹С…РѕРґРЅРѕРіРѕ РјР°СЃСЃРёРІР°
         LinkedList<Integer> pointsCounts = new LinkedList<Integer>();
         int curPointsCount = 1;
         for (int i = 0; i < nodesCount; i++) {
@@ -155,8 +155,8 @@ public class InkConverter {
             Path curPath = new Path();
 
             int color;
-            //В данных - RGBA
-            //Либа просит - ARGB
+            //Р’ РґР°РЅРЅС‹С… - RGBA
+            //Р›РёР±Р° РїСЂРѕСЃРёС‚ - ARGB
             color = (data[curPosition] << 16)
                     + (data[curPosition + 1] << 8)
                     + (data[curPosition + 2])
@@ -197,6 +197,5 @@ public class InkConverter {
             curPath.ClosePath();
             page.AddAnnotGlyph(mat, curPath, color, true);
         }
-
     }
 }

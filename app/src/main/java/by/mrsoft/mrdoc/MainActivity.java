@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         crash.setOnClickListener(this);
         clear.setOnClickListener(this);
 
-
         File file  = getFile(pdfName);
 
         if (!file.isFile()) {
